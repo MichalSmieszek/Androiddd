@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="tas.projekt3.MainActivity"
+android:weightSum="1">
+
+<TextView
+    android:id="@+id/idtv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.98"
+    android:layout_above="@+id/idb"
+    android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/idb2"
+        android:layout_width="200dp"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/idb"
+        android:text="Produkty" />
+
+    <Button
+        android:id="@+id/idb"
+        android:layout_width="200dp"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Opinie" />
+
+
+</RelativeLayout>
