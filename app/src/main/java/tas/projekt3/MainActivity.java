@@ -3,6 +3,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
     });
         button2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                new JSONTask2().execute("http://uam.grzegorz2047.pl:8080/products/all");
+                new JSONTask2().execute("http://uam.grzegorz2047.pl:8080/users/all");
             }
         });
 
@@ -91,9 +92,6 @@ public class MainActivity extends ActionBarActivity {
     }
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-       /* setContentView(R.layout.drugilayout);
-        Button button3= (Button) findViewById(R.id.powrot);
-        textview2 = (TextView) findViewById(R.id.tV2);*/
         textview.setText(result);
     }
 }
@@ -101,9 +99,11 @@ public class MainActivity extends ActionBarActivity {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
+            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -114,7 +114,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 String finalJSON= buffer.toString();
                 JSONObject finalObject=new JSONObject(finalJSON);
-                JSONArray array = finalObject.getJSONArray("products");
+                JSONArray array = finalObject.getJSONArray("users");
                 StringBuffer FinalBuffer = new StringBuffer();
                 for(int i=0;i<array.length();i++ ){
                     JSONObject podobject=array.getJSONObject(i);
@@ -155,4 +155,4 @@ public class MainActivity extends ActionBarActivity {
     }
 }
 
-//gkugjfhjfhf
+//gkugjfhjfhffshgshsfjdjgj
