@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context="tas.projekt3.MainActivity"
+
 android:weightSum="1">
 
 <TextView
@@ -18,20 +18,27 @@ android:weightSum="1">
 
     <Button
         android:id="@+id/idb2"
-        android:layout_width="200dp"
+        android:layout_width="120dp"
         android:layout_height="112dp"
+        android:text="Użytkownicy"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/idb"
-        android:text="Produkty" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/idb"
-        android:layout_width="200dp"
+        android:layout_width="120dp"
+        android:layout_height="112dp"
+        android:text="Opinie"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/idb3"
+        android:layout_width="120dp"
         android:layout_height="112dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="Opinie" />
+        android:layout_alignParentStart="true"
+        android:text="Produkty" />
 
 
 </RelativeLayout>

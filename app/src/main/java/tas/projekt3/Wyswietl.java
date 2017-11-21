@@ -27,6 +27,7 @@ public class Wyswietl extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.idb);
         Button button2= (Button) findViewById(R.id.idb2);
+        Button button3= (Button) findViewById(R.id.idb3);
         textview = (TextView) findViewById(R.id.idtv);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -39,14 +40,22 @@ public class Wyswietl extends ActionBarActivity {
             }
         });
 
+        button3.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                new JSONTask3().execute("http://uam.grzegorz2047.pl:8080/products/all");
+            }
+        });
+
     }
     public class JSONTask extends AsyncTask<String,String,String> {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
+            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
             BufferedReader reader = null;
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -152,4 +161,64 @@ public class Wyswietl extends ActionBarActivity {
             textview.setText(result);
         }
     }
+    public class JSONTask3 extends AsyncTask<String,String,String> {
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestProperty ("Authorization", basicAuth);
+                connection.connect();
+                InputStream stream = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(stream));
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+                String finalJSON= buffer.toString();
+                JSONObject finalObject=new JSONObject(finalJSON);
+                JSONArray array = finalObject.getJSONArray("products");
+                StringBuffer FinalBuffer = new StringBuffer();
+                for(int i=0;i<array.length();i++ ){
+                    JSONObject podobject=array.getJSONObject(i);
+                    String id = podobject.getString("id");
+                    String nazwa = podobject.getString("name");
+                    FinalBuffer.append(id  + " Nazwa: "+ nazwa +  "\n");
+                }
+                return(FinalBuffer.toString());
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+            finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            textview.setText(result);
+        }
+    }
+
+
+
+
+
 }
