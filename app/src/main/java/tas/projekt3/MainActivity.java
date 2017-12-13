@@ -15,6 +15,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.powitalny);
         Button button = (Button) findViewById(R.id.btn1);
+        Button button1=(Button) findViewById(R.id.btn2);
+        Button button2=(Button) findViewById(R.id.btn3);
         textview = (TextView) findViewById(R.id.idtv);
         button.setOnClickListener(new View.OnClickListener(){
         public void onClick (View v) {
@@ -22,5 +24,19 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
         }
     });
+        button1.setOnClickListener(new View.OnClickListener(){
+            public void onClick (View v) {
+                Intent intent = new Intent(getApplicationContext(),Proba.class);
+                startActivity(intent);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener(){
+            public void onClick (View v) {
+                Intent intent = new Intent(getApplicationContext(),Wyslij.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
+//https://www.youtube.com/watch?v=28jA5-mO8K8
