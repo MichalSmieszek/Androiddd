@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
     private TextView textview;
+    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
     });
         button1.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v) {
-                Intent intent = new Intent(getApplicationContext(),Proba.class);
+                Intent intent = new Intent(getApplicationContext(),Log.class);
                 startActivity(intent);
             }
         });

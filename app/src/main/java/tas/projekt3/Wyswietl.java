@@ -50,7 +50,7 @@ public class Wyswietl extends ActionBarActivity {
     public class JSONTask extends AsyncTask<String,String,String> {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
+            final String basicAuth = "Basic " + Base64.encodeToString("Grzegorz:admin1".getBytes(), Base64.NO_WRAP);
             BufferedReader reader = null;
             try {
                 URL url = new URL(params[0]);
@@ -110,7 +110,7 @@ public class Wyswietl extends ActionBarActivity {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
+            final String basicAuth = "Basic " + Base64.encodeToString("user.getnick():user.getpass()".getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
@@ -165,7 +165,7 @@ public class Wyswietl extends ActionBarActivity {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("admin:admin1".getBytes(), Base64.NO_WRAP);
+            final String basicAuth = "Basic " + Base64.encodeToString("Grzegorz:admin1".getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();

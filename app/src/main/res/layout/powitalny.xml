@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.07"
-        android:text="proba" />
+        android:text="Zapisz nick i haslo" />
 
     <Button
         android:id="@+id/btn3"
