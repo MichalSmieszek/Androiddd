@@ -36,7 +36,7 @@ public class Wyslij extends ActionBarActivity {
         button.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 RequestParams params = new RequestParams();
-                params.put("name", "test");
+                params.put("Grzegorz", "admin1");
                 client.get("http://uam.grzegorz2047.pl:8080/products/add", params, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

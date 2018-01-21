@@ -5,8 +5,8 @@ package tas.projekt3;
  */
 
 public class User {
-    private String nick=null;
-    private String pass=null;
+    private String nick="a";
+    private String pass="b";
     public void setnick(String s){
         nick=s;
     }
@@ -17,6 +17,11 @@ public class User {
         return pass;
     }
     public String getnick(){
+
         return nick;
+    }
+    User(){
+        nick="Grzegorz";
+        pass="admin1";
     }
 }
