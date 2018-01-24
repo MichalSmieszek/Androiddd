@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,21 +29,23 @@ public class Wyswietl extends ActionBarActivity {
         Button button = (Button) findViewById(R.id.idb);
         Button button2= (Button) findViewById(R.id.idb2);
         Button button3= (Button) findViewById(R.id.idb3);
+        final EditText et1=(EditText) findViewById(R.id.editText4);
+        final EditText et2=(EditText) findViewById(R.id.editText5);
         textview = (TextView) findViewById(R.id.idtv);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                new JSONTask().execute("http://uam.grzegorz2047.pl:8080/opinions/all");
+                new JSONTask().execute("http://uam.grzegorz2047.pl:8080/products/all",et1.getText().toString(),et2.getText().toString());
             }
         });
         button2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                new JSONTask2().execute("http://uam.grzegorz2047.pl:8080/users/all");
+                new JSONTask2().execute("http://uam.grzegorz2047.pl:8080/users/all",et1.getText().toString(),et2.getText().toString());
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                new JSONTask3().execute("http://uam.grzegorz2047.pl:8080/products/all");
+                new JSONTask3().execute("http://uam.grzegorz2047.pl:8080/products/all",et1.getText().toString(),et2.getText().toString());
             }
         });
 
@@ -50,12 +53,12 @@ public class Wyswietl extends ActionBarActivity {
     public class JSONTask extends AsyncTask<String,String,String> {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("Grzegorz:admin1".getBytes(), Base64.NO_WRAP);
             BufferedReader reader = null;
+            final String basicAuth = "Basic " + Base64.encodeToString((params[1] + ':' + params[2]).getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestProperty ("Authorization", basicAuth);
+                connection.setRequestProperty("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -64,30 +67,35 @@ public class Wyswietl extends ActionBarActivity {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
-                String finalJSON= buffer.toString();
-                JSONObject finalObject=new JSONObject(finalJSON);
-                JSONArray array = finalObject.getJSONArray("opinions");
+                String finalJSON = buffer.toString();
+                JSONObject finalObject = new JSONObject(finalJSON);
+                JSONArray array = finalObject.getJSONArray("products");
                 StringBuffer FinalBuffer = new StringBuffer();
-                for(int i=0;i<array.length();i++ ){
-                    JSONObject podobject=array.getJSONObject(i);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject podobject = array.getJSONObject(i);
                     String id = podobject.getString("id");
-                    String nazwa = podobject.getString("productName");
-                    String opinion2 = podobject.getString("generalOpinion");
-                    String pros = podobject.getString("pros");
-                    String cons = podobject.getString("cons");
-                    int score = podobject.getInt("score");
-                    FinalBuffer.append(id  +" Nazwa: "+ nazwa + "; Opinia: " + opinion2+ "; Zalety: " + pros+ "; Wady: " +cons+ "; Ocena: "+score+ "\n");
+                    String nazwa = podobject.getString("name");
+                    FinalBuffer.append(id + " Nazwa: " + nazwa );
+                    JSONArray array2 = podobject.getJSONArray("opinions");
+                    for(int j=0;j<array2.length();j++){
+                        FinalBuffer.append("Opinia nr " + (j+1));
+                        JSONObject opinieobject=array2.getJSONObject(j);
+                        String pros=opinieobject.getString("pros");
+                        String cons=opinieobject.getString("cons");
+                        FinalBuffer.append(" Zalety: " + pros + "," );
+                        FinalBuffer.append(" Wady: " +cons+ "\n");
+                    }
+                    FinalBuffer.append("\n");
                 }
-                return(FinalBuffer.toString());
+                return (FinalBuffer.toString());
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            }catch (JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
-            }
-            finally {
+            } finally {
                 if (connection != null) {
                     connection.disconnect();
                 }
@@ -101,6 +109,7 @@ public class Wyswietl extends ActionBarActivity {
             }
             return null;
         }
+
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             textview.setText(result);
@@ -110,11 +119,11 @@ public class Wyswietl extends ActionBarActivity {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("user.getnick():user.getpass()".getBytes(), Base64.NO_WRAP);
+            final String basicAuth = "Basic " + Base64.encodeToString((params[1] + ':' + params[2]).getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestProperty ("Authorization", basicAuth);
+                connection.setRequestProperty("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -123,26 +132,25 @@ public class Wyswietl extends ActionBarActivity {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
-                String finalJSON= buffer.toString();
-                JSONObject finalObject=new JSONObject(finalJSON);
+                String finalJSON = buffer.toString();
+                JSONObject finalObject = new JSONObject(finalJSON);
                 JSONArray array = finalObject.getJSONArray("users");
                 StringBuffer FinalBuffer = new StringBuffer();
-                for(int i=0;i<array.length();i++ ){
-                    JSONObject podobject=array.getJSONObject(i);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject podobject = array.getJSONObject(i);
                     String id = podobject.getString("id");
                     String nazwa = podobject.getString("name");
-                    FinalBuffer.append(id  + " Nazwa: "+ nazwa +  "\n");
+                    FinalBuffer.append(id + " Nazwa: " + nazwa + "\n");
                 }
-                return(FinalBuffer.toString());
+                return (FinalBuffer.toString());
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
-            }
-            finally {
+            } finally {
                 if (connection != null) {
                     connection.disconnect();
                 }
@@ -156,6 +164,7 @@ public class Wyswietl extends ActionBarActivity {
             }
             return null;
         }
+
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             textview.setText(result);
@@ -165,7 +174,7 @@ public class Wyswietl extends ActionBarActivity {
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-            final String basicAuth = "Basic " + Base64.encodeToString("Grzegorz:admin1".getBytes(), Base64.NO_WRAP);
+            final String basicAuth = "Basic " + Base64.encodeToString((params[1]+':'+params[2]).getBytes(), Base64.NO_WRAP);
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();

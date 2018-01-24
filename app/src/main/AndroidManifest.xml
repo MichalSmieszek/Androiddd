@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".Wyswietl"/>
         <activity android:name=".Wyslij"/>
-        <activity android:name=".Zaloguj"/>
+        <activity android:name=".Wyslijop"/>
     </application>
 
 </manifest>

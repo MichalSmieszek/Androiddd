@@ -10,34 +10,33 @@ import android.widget.TextView;
 import org.json.*;
 import com.loopj.android.http.*;
 
- import org.json.JSONArray;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class Wyslij extends ActionBarActivity {
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
-    public TextView textview;
-    EditText fname,nick,haslo;
-    Button button;
 
-    @Override
+public class Wyslijop extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
-
+        final EditText nick,haslo,produkt,zaleta;
+        Button button;
+        final AsyncHttpClient client = new AsyncHttpClient();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wyslij);
-        fname = (EditText) findViewById(R.id.editText);
-        button = (Button) findViewById(R.id.button);
-        nick=(EditText) findViewById(R.id.editText2);
-        haslo=(EditText) findViewById(R.id.editText3);
-        button.setOnClickListener(new Button.OnClickListener() {
+        setContentView(R.layout.wyslijop);
+        produkt = (EditText) findViewById(R.id.editText8);
+        button = (Button) findViewById(R.id.button2);
+        nick = (EditText) findViewById(R.id.editText6);
+        haslo = (EditText) findViewById(R.id.editText7);
+        zaleta = (EditText) findViewById(R.id.editText9);
+       button.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
                 RequestParams params = new RequestParams();
-                params.put("name", fname.getText().toString());
+                params.put("product", produkt.getText().toString());
+                params.put("pros",zaleta.getText().toString());
                 client.setBasicAuth(nick.getText().toString(),haslo.getText().toString());
-                client.get("http://uam.grzegorz2047.pl:8080/products/add", params, new JsonHttpResponseHandler() {
+                client.get("http://uam.grzegorz2047.pl:8080/opinions/add", params, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         // If the response is JSONObject instead of expected JSONArray
@@ -52,10 +51,5 @@ public class Wyslij extends ActionBarActivity {
 
             }
         });
-
     }
 }
-
-
-
-

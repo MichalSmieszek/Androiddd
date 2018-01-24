@@ -9,33 +9,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="To jest ekran powitalny. Witam Cb. Kliknij ok ;P"
+        android:text="Witaj w naszej aplikacji!"
         android:textSize="32sp" />
 
     <Button
         android:id="@+id/btn1"
-        android:layout_width="377dp"
+        android:layout_width="378dp"
         android:layout_height="wrap_content"
-        android:text="ok" />
-
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.07"
-        android:text="Zapisz nick i haslo" />
+        android:text="Odbieranie danych" />
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="match_parent"
+        android:layout_width="366dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.20"
         android:text="Wysylanie" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/button65"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.20"
-        android:text="TextView" />
+        android:text="Wysylanie Opinii" />
+
 </LinearLayout>

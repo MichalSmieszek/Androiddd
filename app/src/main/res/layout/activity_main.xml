@@ -40,5 +40,25 @@ android:weightSum="1">
         android:layout_alignParentStart="true"
         android:text="Produkty" />
 
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Grzegorz"
+        android:layout_above="@+id/editText5"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="admin1"
+        android:layout_above="@+id/idb2"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
