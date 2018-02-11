@@ -1,4 +1,4 @@
- Projekt ma następujące funkcjonalności: <br />
+ Projekt został napisany na platformę android i ma następujące funkcjonalności: <br />
  -Wypisywanie produktów dostępnych na serwerze.<br />
  -Wypisywanie opinii do produktów.<br />
  -Wyświetlanie użytkowników.<br />
