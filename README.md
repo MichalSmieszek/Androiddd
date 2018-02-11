@@ -6,3 +6,5 @@
  -Dodawanie opinii.<br />
  -Basic auth.<br />
  -Serwer napisany w Spring https://github.com/grzegorz2047/TASProjekt
+
+I reakcja prowadzącego sprawdzającego projekt bezcenna ,,Czy jak nacisnę button, który się nazywa button to wyślę ten produkt?" ;)
