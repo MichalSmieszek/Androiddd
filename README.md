@@ -1,10 +1,11 @@
- Projekt został napisany na platformę android i ma następujące funkcjonalności: <br />
- -Wypisywanie produktów dostępnych na serwerze.<br />
- -Wypisywanie opinii do produktów.<br />
- -Wyświetlanie użytkowników.<br />
- -Dodawanie produktów.<br />
- -Dodawanie opinii.<br />
+Project was written on android platform and has following functionalities: <br />
+ -Writing avaiable products.<br />
+ -Writing opinions about the product.<br />
+ -Showing users singed up to platform.<br />
+ -Adding products.<br />
+ -Adding opinions.<br />
  -Basic auth.<br />
- -Serwer napisany w Spring https://github.com/grzegorz2047/TASProjekt
+ -Server + front-end you can find here https://github.com/grzegorz2047/TASProjekt
 
-I reakcja prowadzącego sprawdzającego projekt bezcenna ,,Czy jak nacisnę button, który się nazywa button to wyślę ten produkt?" ;)
+And reaction of teacher during defence ,,When I put button called button I' ll send it to server". ;)
+I didn't notice that ;(
