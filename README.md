@@ -7,5 +7,5 @@ Project was written on android platform and has following functionalities: <br /
  -Basic auth.<br />
  -Server + front-end you can find here https://github.com/grzegorz2047/TASProjekt
 
-And reaction of teacher during defence ,,When I put button called button I' ll send it to server?". ;)
+And reaction of teacher during defence ,,When I put button called button, does it be sent to server?". ;)
 I didn't notice that ;(
